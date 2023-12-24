@@ -14,6 +14,7 @@ export async function authenticateToken(
   next: NextFunction
 ) {
   // Authentication
+  console.log('----------------------------------------------->')
   const authHeader = req.headers['authorization'];
   const jwtToken = authHeader?.split(' ')[1];
   if (!jwtToken) {
