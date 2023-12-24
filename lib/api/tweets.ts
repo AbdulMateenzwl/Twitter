@@ -1,7 +1,7 @@
 import { API_URL, authToken } from './config';
 
 export const listTweets = async () => {
-	const res = await fetch(`http://localhost:3000/tweet`, {
+	const res = await fetch(`${API_URL}/tweet`, {
 		headers: {
 			Authorization: `Bearer ${authToken}`,
 		},
