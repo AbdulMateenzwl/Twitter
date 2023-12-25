@@ -35,7 +35,7 @@ export async function sendEmailToken(email: string, token: string) {
   const message = `Your one time password: ${token}`;
   const command = createSendEmailCommand(
     email,
-    'savinvadim1312@gmail.com',
+    'abdulmateenzwl@gmail.com',
     message
   );
 

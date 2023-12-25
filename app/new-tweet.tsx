@@ -15,10 +15,10 @@ import { createTweet } from '../lib/api/tweets';
 
 const user = {
 	id: 'u1',
-	username: 'VadimNotJustDev',
-	name: 'Vadim',
+	username: 'mateen',
+	name: 'Abdul Mateen',
 	image:
-		'https://notjustdev-dummy.s3.us-east-2.amazonaws.com/avatars/vadim.png',
+		'https://connect.abdulmateenzwl.com/Images/front%20img%20white%20bg.jpg',
 };
 
 export default function NewTweet() {

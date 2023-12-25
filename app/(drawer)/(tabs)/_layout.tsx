@@ -22,13 +22,13 @@ function TabBarIcon(props: {
 function AvatarHeader() {
   const navigation = useNavigation();
   return (
-    <Pressable onPress={() => navigation.openDrawer()}>
-      <Image
-        src="https://notjustdev-dummy.s3.us-east-2.amazonaws.com/avatars/vadim.png"
-        style={{ width: 30, aspectRatio: 1, borderRadius: 40, marginLeft: 10 }}
-      />
-    </Pressable>
-  );
+		<Pressable onPress={() => navigation.openDrawer()}>
+			<Image
+				src='https://connect.abdulmateenzwl.com/Images/front%20img%20white%20bg.jpg'
+				style={{ width: 30, aspectRatio: 1, borderRadius: 40, marginLeft: 10 }}
+			/>
+		</Pressable>
+	);
 }
 
 export default function TabLayout() {
