@@ -10,20 +10,22 @@ import {
 	SafeAreaView,
 	ActivityIndicator,
 } from 'react-native';
-import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
-import { createTweet } from '../lib/api/tweets';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { useTweetsApi } from '../lib/api/tweets';
 
 const user = {
 	id: 'u1',
-	username: 'mateen',
-	name: 'Abdul Mateen',
+	username: 'VadimNotJustDev',
+	name: 'Vadim',
 	image:
-		'https://connect.abdulmateenzwl.com/Images/front%20img%20white%20bg.jpg',
+		'https://notjustdev-dummy.s3.us-east-2.amazonaws.com/avatars/vadim.png',
 };
 
 export default function NewTweet() {
 	const [text, setText] = useState('');
 	const router = useRouter();
+
+	const { createTweet } = useTweetsApi();
 
 	const queryClient = useQueryClient();
 
@@ -31,21 +33,20 @@ export default function NewTweet() {
 		mutationFn: createTweet,
 		onSuccess: (data) => {
 			// queryClient.invalidateQueries({ queryKey: ['tweets'] })
-			queryClient.setQueriesData(['tweets'], (existingTweets: any) => {
+			queryClient.setQueriesData(['tweets'], (existingTweets) => {
 				return [data, ...existingTweets];
 			});
 		},
 	});
 
 	const onTweetPress = async () => {
-		console.warn('Posting the tweet: ', text);
-
 		try {
 			await mutateAsync({ content: text });
+
 			setText('');
 			router.back();
-		} catch (error) {
-			console.log('Error :', (error as Error).message);
+		} catch (e) {
+			console.log('Error:', e.message);
 		}
 	};
 
@@ -63,7 +64,7 @@ export default function NewTweet() {
 				</View>
 
 				<View style={styles.inputContainer}>
-					<Image src={user.image} style={styles.image} alt='User Image' />
+					<Image src={user.image} style={styles.image} />
 					<TextInput
 						value={text}
 						onChangeText={setText}
@@ -74,9 +75,7 @@ export default function NewTweet() {
 					/>
 				</View>
 
-				{isError && (
-					<Text style={{ color: 'red' }}>{(error as Error).message}</Text>
-				)}
+				{isError && <Text>Error: {error.message}</Text>}
 			</View>
 		</SafeAreaView>
 	);
